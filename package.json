@@ -1,0 +1,28 @@
+{
+  "name": "deku-element-to-jsx-string",
+  "version": "0.0.0",
+  "description": "Generate jsx string representation from deku element",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "semistandard | snazzy",
+    "test": "npm run lint",
+    "prepublish": "babel index.jsx --out-dir dist"
+  },
+  "author": "mic.com",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-plugin-transform-react-jsx": "^6.1.18",
+    "babel-preset-es2015": "^6.1.18",
+    "semistandard-deku": "github:micnews/semistandard#deku",
+    "snazzy": "^2.0.1"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micnews/deku-element-to-jsx-string.git"
+  },
+  "bugs": {
+    "url": "https://github.com/micnews/deku-element-to-jsx-string/issues"
+  },
+  "homepage": "https://github.com/micnews/deku-element-to-jsx-string#readme"
+}
