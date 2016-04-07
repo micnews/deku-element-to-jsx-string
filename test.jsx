@@ -4,7 +4,7 @@ import element from 'virtual-element';
 
 test('Simplest form of transform', (t) => {
   const actual = elementToString(<div></div>);
-  const expected = '<div />';
+  const expected = '<div/>';
 
   t.equals(actual, expected);
 
@@ -20,7 +20,7 @@ test('Component', (t) => {
   };
 
   const actual = elementToString(<Component />);
-  const expected = '<Component />';
+  const expected = '<Component/>';
 
   t.equals(actual, expected);
 
@@ -40,6 +40,28 @@ test('Component with attributes', (t) => {
   const actual = elementToString(<Component string='string' callback={callback} boolean={true} />);
   const expected = '<Component string=\'string\' callback={function} boolean={true}/>';
 
+  t.equals(actual, expected);
+
+  t.end();
+});
+
+test('Nested components', (t) => {
+  const ParentComponent = {
+    render: () => {
+      return <div></div>;
+    },
+    name: 'ParentComponent'
+  };
+
+  const ChildComponent = {
+    render: () => {
+      return <div></div>;
+    },
+    name: 'ChildComponent'
+  };
+
+  const actual = elementToString(<ParentComponent><ChildComponent>child</ChildComponent></ParentComponent>);
+  const expected = '<ParentComponent><ChildComponent>child</ChildComponent></ParentComponent>';
   t.equals(actual, expected);
 
   t.end();

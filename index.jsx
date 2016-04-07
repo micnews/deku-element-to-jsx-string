@@ -1,4 +1,8 @@
-export default (element) => {
+const toString = (element) => {
+  if (typeof element === 'string') {
+    return element;
+  }
+
   const name = typeof element.type === 'string'
     ? element.type
     : element.type.name;
@@ -22,5 +26,13 @@ export default (element) => {
       return `${key}=${value}`;
     }).join(' ');
 
-  return `<${name} ${attributes}/>`;
+  let end = '/>';
+  if (element.children && element.children.length) {
+    const children = element.children.map(toString).join('');
+    end = `>${children}</${name}>`;
+  }
+
+  return `<${name}${attributes ? ' ' + attributes : '' }${end}`;
 };
+
+export default toString;
