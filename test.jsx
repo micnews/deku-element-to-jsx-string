@@ -37,8 +37,8 @@ test('Component with attributes', (t) => {
 
   function callback () {}
 
-  const actual = elementToString(<Component string='string' callback={callback} boolean={true} />);
-  const expected = '<Component string=\'string\' callback={function} boolean={true}/>';
+  const actual = elementToString(<Component string='string' number={1} callback={callback} boolean={true} />);
+  const expected = '<Component string=\'string\' number={1} callback={function} boolean={true}/>';
 
   t.equals(actual, expected);
 

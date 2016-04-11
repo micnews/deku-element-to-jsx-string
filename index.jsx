@@ -18,7 +18,7 @@ const toString = (element) => {
 
       if (type.toLowerCase() === 'string') {
         value = `'${element.attributes[key]}'`;
-      } else if (type.toLowerCase() === 'boolean') {
+      } else if (type.toLowerCase() === 'boolean' || type.toLowerCase() === 'number') {
         value = `{${element.attributes[key]}}`;
       } else {
         value = `{${type}}`;
