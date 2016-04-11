@@ -22,9 +22,9 @@ const toString = (element) => {
       const type = typeof element.attributes[key];
       let value;
 
-      if (type.toLowerCase() === 'string') {
+      if (type === 'string') {
         value = `'${element.attributes[key]}'`;
-      } else if (type.toLowerCase() === 'boolean' || type.toLowerCase() === 'number') {
+      } else if (type === 'boolean' || type === 'number') {
         value = `{${element.attributes[key]}}`;
       } else {
         value = `{${type}}`;
