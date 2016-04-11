@@ -36,13 +36,19 @@ npm test
 
 ## Dependencies
 
-None
+- [es6-set](https://github.com/medikoo/es6-set): ECMAScript6 Set polyfill
+- [js-beautify](https://github.com/beautify-web/js-beautify): jsbeautifier.org for node
 
 ## Dev Dependencies
 
-- [babel-tape-runner](https://github.com/wavded/babel-tape-runner): Babel + Tape for running your ES Next tests
+- [babel-cli](https://github.com/babel/babel/tree/master/packages): Babel command line.
 - [babel-plugin-transform-react-jsx](https://github.com/babel/babel/tree/master/packages): Turn JSX into React function calls
 - [babel-preset-es2015](https://github.com/babel/babel/tree/master/packages): Babel preset for all es2015 plugins.
+- [babel-tape-runner](https://github.com/wavded/babel-tape-runner): Babel + Tape for running your ES Next tests
+- [deku](https://github.com/dekujs/deku): Create view components using a virtual DOM
+- [deku-redux](https://github.com/troch/deku-redux): Redux bindings for deku
+- [object-assign](https://github.com/sindresorhus/object-assign): ES6 Object.assign() ponyfill
+- [redux](https://github.com/reactjs/redux): Predictable state container for JavaScript apps
 - [semistandard-deku](https://github.com/micnews/semistandard-deku): All the goodness of `feross/standard` with semicolons sprinkled on top. Adapted for deku
 - [snazzy](https://github.com/feross/snazzy): Format JavaScript Standard Style as Stylish (i.e. snazzy) output
 - [tape](https://github.com/substack/tape): tap-producing test harness for node and browsers
