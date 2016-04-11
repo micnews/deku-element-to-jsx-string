@@ -1,3 +1,4 @@
+import {html} from 'js-beautify';
 import Set from 'es6-set';
 const filterAttributes = new Set(['dispatch', 'store', 'storeState', 'children']);
 
@@ -38,7 +39,7 @@ const toString = (element) => {
     end = `>${children}</${name}>`;
   }
 
-  return `<${name}${attributes ? ' ' + attributes : '' }${end}`;
+  return html(`<${name}${attributes ? ' ' + attributes : '' }${end}`, { indent_size: 2 });
 };
 
 export default toString;

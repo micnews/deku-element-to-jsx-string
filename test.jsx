@@ -91,7 +91,7 @@ test('Nested components', (t) => {
   };
 
   const actual = elementToString(<ParentComponent><ChildComponent>child</ChildComponent></ParentComponent>);
-  const expected = '<ParentComponent><ChildComponent>child</ChildComponent></ParentComponent>';
+  const expected = '<ParentComponent>\n  <ChildComponent>child</ChildComponent>\n</ParentComponent>';
   t.equals(actual, expected);
 
   t.end();

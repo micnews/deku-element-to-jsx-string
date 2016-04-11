@@ -25,7 +25,8 @@
     "virtual-element": "^1.2.0"
   },
   "dependencies": {
-    "es6-set": "^0.1.4"
+    "es6-set": "^0.1.4",
+    "js-beautify": "^1.6.2"
   },
   "repository": {
     "type": "git",
