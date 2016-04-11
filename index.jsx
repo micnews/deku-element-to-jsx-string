@@ -1,4 +1,5 @@
 import {html} from 'js-beautify';
+import stringifyObject from 'stringify-object';
 import Set from 'es6-set';
 const filterAttributes = new Set(['dispatch', 'store', 'storeState', 'children']);
 
@@ -27,6 +28,8 @@ const toString = (element) => {
         value = `'${element.attributes[key]}'`;
       } else if (type === 'boolean' || type === 'number') {
         value = `{${element.attributes[key]}}`;
+      } else if (type === 'object') {
+        value = `{${stringifyObject(element.attributes[key])}}`;
       } else {
         value = `{${type}}`;
       }
