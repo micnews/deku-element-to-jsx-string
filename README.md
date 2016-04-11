@@ -22,8 +22,8 @@ const Component = {
 
 function callback () {}
 
-const jsxSring = elementToString(<Component string='string' callback={callback} boolean={true} />);
-console.log(jsxSring);
+const jsxString = elementToString(<Component string='string' callback={callback} boolean={true} />);
+console.log(jsxString);
 // output: '<Component string=\'string\' callback={function} boolean={true}/>'
 ```
 
