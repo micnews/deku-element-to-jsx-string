@@ -1,6 +1,9 @@
 import test from 'tape';
 import elementToString from './index';
 import element from 'virtual-element';
+import { connect, storePlugin } from 'deku-redux';
+import { createStore } from 'redux';
+import { renderString, tree } from 'deku';
 
 test('Simplest form of transform', (t) => {
   const actual = elementToString(<div></div>);
@@ -38,6 +41,33 @@ test('Component with attributes', (t) => {
   function callback () {}
 
   const actual = elementToString(<Component string='string' number={1} callback={callback} boolean={true} />);
+  const expected = '<Component string=\'string\' number={1} callback={function} boolean={true}/>';
+
+  t.equals(actual, expected);
+
+  t.end();
+});
+
+test('Should remove redux attributes', (t) => {
+  const Component = {
+    render: function () {
+      return <div></div>;
+    },
+    name: 'Component'
+  };
+
+  function render ({ props }) {
+    return (elementToString(<Component {...props} />));
+  }
+
+  let ReduxComponent = connect(() => { return {}; })({ render });
+  ReduxComponent.name = 'ReduxComponent';
+  function callback () {}
+
+  const app = tree(<ReduxComponent string='string' number={1} callback={callback} boolean={true} />);
+  const store = createStore(() => {});
+  app.use(storePlugin(store));
+  const actual = renderString(app);
   const expected = '<Component string=\'string\' number={1} callback={function} boolean={true}/>';
 
   t.equals(actual, expected);

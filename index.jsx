@@ -1,3 +1,6 @@
+import Set from 'es6-set';
+const filterAttributes = new Set(['dispatch', 'store', 'storeState', 'children']);
+
 const toString = (element) => {
   if (typeof element === 'string') {
     return element;
@@ -12,6 +15,9 @@ const toString = (element) => {
   }
 
   const attributes = Object.keys(element.attributes)
+    .filter((key) => {
+      return !filterAttributes.has(key);
+    })
     .map((key) => {
       const type = typeof element.attributes[key];
       let value;
