@@ -48,7 +48,7 @@ test('Component with attributes', (t) => {
   };
 
   const actual = elementToString(<Component {...props} />);
-  const expected = '<Component string=\'string\' number={1} callback={function} boolean={true} object={{ foo: \'bar\' }} array={[ \'foo\', \'bar\' ]}/>';
+  const expected = 'const object = {\n  foo: \'bar\'\n};\nconst array = [\n  \'foo\',\n  \'bar\'\n];\n<Component string=\'string\' number={1} callback={function} boolean={true} object={object} array={array}/>';
 
   t.equals(actual, expected);
 

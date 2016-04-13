@@ -1,4 +1,4 @@
-import {html} from 'js-beautify';
+import {html, js} from 'js-beautify';
 import stringifyObject from 'stringify-object';
 import Set from 'es6-set';
 const filterAttributes = new Set(['dispatch', 'store', 'storeState', 'children']);
@@ -16,6 +16,8 @@ const toString = (element) => {
     throw new Error('Component name must be set');
   }
 
+  const objects = [];
+
   const attributes = Object.keys(element.attributes)
     .filter((key) => {
       return !filterAttributes.has(key);
@@ -29,7 +31,9 @@ const toString = (element) => {
       } else if (type === 'boolean' || type === 'number') {
         value = `{${element.attributes[key]}}`;
       } else if (type === 'object') {
-        value = `{${stringifyObject(element.attributes[key])}}`;
+        const stringified = stringifyObject(element.attributes[key]);
+        objects.push(`const ${key} = ${stringified};`);
+        value = `{${key}}`;
       } else {
         value = `{${type}}`;
       }
@@ -42,7 +46,12 @@ const toString = (element) => {
     end = `>${children}</${name}>`;
   }
 
-  return html(`<${name}${attributes ? ' ' + attributes : '' }${end}`, { indent_size: 2 });
+  const prettyObjects = objects.length
+    ? js(objects.join('\n'), { indent_size: 2 }) + '\n'
+    : '';
+
+  return prettyObjects +
+    html(`<${name}${attributes ? ' ' + attributes : '' }${end}`, { indent_size: 2 });
 };
 
 export default toString;
