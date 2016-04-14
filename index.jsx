@@ -51,7 +51,7 @@ const toString = (element) => {
     : '';
 
   return prettyObjects +
-    html(`<${name}${attributes ? ' ' + attributes : '' }${end}`, { indent_size: 2 });
+    html(`<${name}${attributes ? ' ' + attributes : '' }${end}`, { indent_size: 2, wrap_attributes: 'force' });
 };
 
 export default toString;

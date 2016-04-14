@@ -5,6 +5,10 @@ import { connect, storePlugin } from 'deku-redux';
 import { createStore } from 'redux';
 import { renderString, tree } from 'deku';
 
+function fixExpectedIndent (string) {
+  return string.replace(/^ {4}/gm, '');
+}
+
 test('Simplest form of transform', (t) => {
   const actual = elementToString(<div></div>);
   const expected = '<div/>';
@@ -48,7 +52,19 @@ test('Component with attributes', (t) => {
   };
 
   const actual = elementToString(<Component {...props} />);
-  const expected = 'const object = {\n  foo: \'bar\'\n};\nconst array = [\n  \'foo\',\n  \'bar\'\n];\n<Component string=\'string\' number={1} callback={function} boolean={true} object={object} array={array}/>';
+  const expected = fixExpectedIndent(`const object = {
+      foo: 'bar'
+    };
+    const array = [
+      'foo',
+      'bar'
+    ];
+    <Component string='string'
+      number={1}
+      callback={function}
+      boolean={true}
+      object={object}
+      array={array}/>`);
 
   t.equals(actual, expected);
 
@@ -75,7 +91,10 @@ test('Should remove redux attributes', (t) => {
   const store = createStore(() => {});
   app.use(storePlugin(store));
   const actual = renderString(app);
-  const expected = '<Component string=\'string\' number={1} callback={function} boolean={true}/>';
+  const expected = fixExpectedIndent(`<Component string=\'string\'
+      number={1}
+      callback={function}
+      boolean={true}/>`);
 
   t.equals(actual, expected);
 
@@ -98,7 +117,9 @@ test('Nested components', (t) => {
   };
 
   const actual = elementToString(<ParentComponent><ChildComponent>child</ChildComponent></ParentComponent>);
-  const expected = '<ParentComponent>\n  <ChildComponent>child</ChildComponent>\n</ParentComponent>';
+  const expected = fixExpectedIndent(`<ParentComponent>
+      <ChildComponent>child</ChildComponent>
+    </ParentComponent>`);
   t.equals(actual, expected);
 
   t.end();
