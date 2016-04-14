@@ -26,7 +26,8 @@
   },
   "dependencies": {
     "es6-set": "^0.1.4",
-    "js-beautify": "^1.6.2"
+    "js-beautify": "^1.6.2",
+    "stringify-object": "^2.3.1"
   },
   "repository": {
     "type": "git",
